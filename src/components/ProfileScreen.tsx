@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { Language, ExperienceItem, SkillScore } from '../types';
 import { User, Award, FileText, Download, CheckCircle2, Star, Sparkles, Mail, Briefcase, Calendar, TrendingDown, Lightbulb } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { SkillGrowthChart } from './SkillGrowthChart';
+import { StrengthGuidanceCard } from './StrengthGuidanceCard';
+import { SavedDraftsPanel } from './SavedDraftsPanel';
+import { SKILL_GROWTH_TRENDS, INITIAL_SAVED_DRAFTS, STRENGTH_GUIDANCE } from '../data/initialData';
 
 interface ProfileScreenProps {
   language: Language;
@@ -208,6 +212,20 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
             </div>
           </div>
         </section>
+      </div>
+
+      {/* Full Width Sections Below */}
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Skill Growth Chart */}
+        <SkillGrowthChart language={language} trends={SKILL_GROWTH_TRENDS} />
+
+        {/* Strength Guidance */}
+        <StrengthGuidanceCard language={language} guidance={STRENGTH_GUIDANCE} />
+      </div>
+
+      {/* Saved Drafts */}
+      <div className="mt-6">
+        <SavedDraftsPanel language={language} drafts={INITIAL_SAVED_DRAFTS} />
       </div>
     </div>
   );

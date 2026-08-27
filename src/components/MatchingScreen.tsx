@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { MatchingResult, RecommendedStory, Language, ExperienceItem } from '../types';
-import { INITIAL_MATCHING_RESULT_WITH_DEV, COMPANY_PRESETS } from '../data/initialData';
+import { INITIAL_MATCHING_RESULT_WITH_DEV, COMPANY_PRESETS, INITIAL_ACTIVITY_PROGRESS, COMPANY_MATCHING_SUMMARIES } from '../data/initialData';
 import { DraftModal } from './DraftModal';
 import { Sparkles, ArrowRightLeft, Bookmark, Edit3, RefreshCw, CheckCircle, BrainCircuit, Zap, Target } from 'lucide-react';
+import { ActivityProgressTracker } from './ActivityProgressTracker';
+import { CompanyMatchComparison } from './CompanyMatchComparison';
 import confetti from 'canvas-confetti';
 
 interface MatchingScreenProps {
@@ -20,6 +22,7 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [selectedStory, setSelectedStory] = useState<RecommendedStory | null>(null);
   const [bookmarkedStories, setBookmarkedStories] = useState<Set<string>>(new Set());
+  const [activityProgress, setActivityProgress] = useState(INITIAL_ACTIVITY_PROGRESS);
 
   const handleAnalyzeFit = async () => {
     setIsAnalyzing(true);
@@ -354,6 +357,27 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
             </div>
           )}
         </section>
+      </div>
+
+      {/* Full Width Sections */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+        {/* Company Matching Comparison */}
+        <CompanyMatchComparison language={language} comparisons={COMPANY_MATCHING_SUMMARIES} />
+
+        {/* Activity Progress Tracker */}
+        {matchingData.developmentActivities && (
+          <ActivityProgressTracker
+            language={language}
+            activities={matchingData.developmentActivities}
+            progressData={activityProgress}
+            onProgressUpdate={(activityId, progress) => {
+              setActivityProgress(prev => [
+                ...prev.filter(p => p.activityId !== activityId),
+                progress
+              ]);
+            }}
+          />
+        )}
       </div>
 
       {/* Modal for Draft Bullet Generation */}

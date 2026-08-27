@@ -284,3 +284,217 @@ export const INITIAL_MATCHING_RESULT_WITH_DEV = {
   ...INITIAL_MATCHING_RESULT,
   developmentActivities: DEVELOPMENT_ACTIVITIES
 };
+
+// 기능 1: 저장된 자기소개서 초안
+export const INITIAL_SAVED_DRAFTS: import('../types').SavedDraft[] = [
+  {
+    id: 'draft-1',
+    companyName: '글로벌 테크놀로지 (Global Tech Inc.)',
+    storyId: 'story-1',
+    titleKo: '베를린 인턴십 중 문화 간 커뮤니케이션 적응',
+    titleEn: 'Adapting to cross-cultural communication during Berlin Internship',
+    bulletKo: '• 독일-한국 간 7시간 시차 환경에서 비동기 스프린트 회의 체계를 수립하여 3개 부서 20+명 간 요구사항 오해율을 0건으로 통제하고 프로젝트를 납기 내 100% 릴리즈함.',
+    bulletEn: '• Established asynchronous sprint synchronization across 7-hour time difference, eliminating cross-cultural communication bottlenecks and delivering international data migration on schedule.',
+    createdAt: '2024-08-25T10:30:00Z',
+    updatedAt: '2024-08-25T10:30:00Z'
+  }
+];
+
+// 기능 2: 역량 성장 트렌드
+export const SKILL_GROWTH_TRENDS: import('../types').SkillGrowthTrend[] = [
+  {
+    skillKey: 'problemSolving',
+    nameKo: '문제 해결',
+    nameEn: 'Problem Solving',
+    currentValue: 95,
+    growthRate: 18,
+    trendData: [
+      { skillKey: 'problemSolving', date: '2024-02', value: 65 },
+      { skillKey: 'problemSolving', date: '2024-04', value: 75 },
+      { skillKey: 'problemSolving', date: '2024-06', value: 85 },
+      { skillKey: 'problemSolving', date: '2024-08', value: 95 }
+    ]
+  },
+  {
+    skillKey: 'tech',
+    nameKo: '기술',
+    nameEn: 'Tech',
+    currentValue: 90,
+    growthRate: 12,
+    trendData: [
+      { skillKey: 'tech', date: '2024-02', value: 72 },
+      { skillKey: 'tech', date: '2024-04', value: 78 },
+      { skillKey: 'tech', date: '2024-06', value: 84 },
+      { skillKey: 'tech', date: '2024-08', value: 90 }
+    ]
+  },
+  {
+    skillKey: 'leadership',
+    nameKo: '리더십',
+    nameEn: 'Leadership',
+    currentValue: 85,
+    growthRate: 8,
+    trendData: [
+      { skillKey: 'leadership', date: '2024-02', value: 72 },
+      { skillKey: 'leadership', date: '2024-04', value: 76 },
+      { skillKey: 'leadership', date: '2024-06', value: 80 },
+      { skillKey: 'leadership', date: '2024-08', value: 85 }
+    ]
+  },
+  {
+    skillKey: 'communication',
+    nameKo: '소통',
+    nameEn: 'Communication',
+    currentValue: 75,
+    growthRate: 10,
+    trendData: [
+      { skillKey: 'communication', date: '2024-02', value: 60 },
+      { skillKey: 'communication', date: '2024-04', value: 65 },
+      { skillKey: 'communication', date: '2024-06', value: 70 },
+      { skillKey: 'communication', date: '2024-08', value: 75 }
+    ]
+  },
+  {
+    skillKey: 'strategy',
+    nameKo: '전략',
+    nameEn: 'Strategy',
+    currentValue: 70,
+    growthRate: 5,
+    trendData: [
+      { skillKey: 'strategy', date: '2024-02', value: 60 },
+      { skillKey: 'strategy', date: '2024-04', value: 63 },
+      { skillKey: 'strategy', date: '2024-06', value: 66 },
+      { skillKey: 'strategy', date: '2024-08', value: 70 }
+    ]
+  },
+  {
+    skillKey: 'design',
+    nameKo: '디자인',
+    nameEn: 'Design',
+    currentValue: 60,
+    growthRate: 3,
+    trendData: [
+      { skillKey: 'design', date: '2024-02', value: 54 },
+      { skillKey: 'design', date: '2024-04', value: 56 },
+      { skillKey: 'design', date: '2024-06', value: 58 },
+      { skillKey: 'design', date: '2024-08', value: 60 }
+    ]
+  }
+];
+
+// 기능 3: 보완 활동 진행도
+export const INITIAL_ACTIVITY_PROGRESS: import('../types').ActivityProgress[] = [
+  {
+    id: 'progress-1',
+    activityId: 'dev-1',
+    status: 'in_progress',
+    progressPercent: 43,
+    startedAt: '2024-08-01T09:00:00Z'
+  },
+  {
+    id: 'progress-2',
+    activityId: 'dev-2',
+    status: 'not_started',
+    progressPercent: 0
+  },
+  {
+    id: 'progress-3',
+    activityId: 'dev-3',
+    status: 'not_started',
+    progressPercent: 0
+  },
+  {
+    id: 'progress-4',
+    activityId: 'dev-4',
+    status: 'in_progress',
+    progressPercent: 25,
+    startedAt: '2024-08-15T18:00:00Z'
+  }
+];
+
+// 기능 4: 다중 기업 매칭 비교
+export const COMPANY_MATCHING_SUMMARIES: import('../types').CompanyMatchingSummary[] = [
+  {
+    companyName: '글로벌 테크놀로지 (Global Tech Inc.)',
+    overallMatchRate: 90,
+    strongMatches: 2,
+    developmentNeeds: 2
+  },
+  {
+    companyName: '혁신 핀테크 플랫폼 (Toss / FinTech Corp)',
+    overallMatchRate: 85,
+    strongMatches: 2,
+    developmentNeeds: 2
+  },
+  {
+    companyName: '글로벌 AI 연구소 (AI Frontier Labs)',
+    overallMatchRate: 88,
+    strongMatches: 2,
+    developmentNeeds: 1
+  }
+];
+
+// 기능 5: 강점 활용 가이드
+export const STRENGTH_GUIDANCE: import('../types').StrengthGuidance[] = [
+  {
+    strengthKo: '문제 해결',
+    strengthEn: 'Problem Solving',
+    skillKey: 'problemSolving',
+    value: 95,
+    careerPathsKo: [
+      '기술 리더 - 복잡한 시스템 아키텍처 설계 및 의사결정',
+      '프로덕트 매니저 - 고객 문제를 데이터 기반으로 분석하고 해결',
+      '컨설턴트 - 기업의 핵심 문제를 진단하고 솔루션 제시',
+      '스타트업 창업가 - 초기 시장 문제를 빠르게 식별하고 MVP 구축'
+    ],
+    careerPathsEn: [
+      'Tech Lead - Design complex system architectures and drive technical decisions',
+      'Product Manager - Analyze customer problems with data-driven insights',
+      'Management Consultant - Diagnose business challenges and propose solutions',
+      'Startup Founder - Identify market problems and build MVPs rapidly'
+    ],
+    differentiatorKo: '당신의 95% 문제해결력은 상위 5% 수준입니다. 특히 "AI 해커톤에서 메모리 최적화 알고리즘으로 40% 성능 개선"처럼 제약 조건 내에서 창의적 해결책을 찾는 능력이 핵심 차별점입니다.',
+    differentiatorEn: 'Your 95% Problem Solving proficiency is in the top 5%. Your key differentiator is discovering creative solutions under constraints—like optimizing algorithms under memory limits during your hackathon win.'
+  },
+  {
+    strengthKo: '기술',
+    strengthEn: 'Tech',
+    skillKey: 'tech',
+    value: 90,
+    careerPathsKo: [
+      '백엔드 엔지니어 - 대규모 시스템 설계, 마이크로서비스 아키텍처',
+      'DevOps 엔지니어 - 인프라 자동화, 배포 파이프라인 구축',
+      'AI/ML 엔지니어 - 모델 개발 및 프로덕션 배포',
+      '기술 리더/CTO - 엔지니어링 팀 리딩 및 기술 전략 수립'
+    ],
+    careerPathsEn: [
+      'Backend Engineer - Design large-scale systems and microservices',
+      'DevOps Engineer - Automate infrastructure and CI/CD pipelines',
+      'AI/ML Engineer - Develop and deploy models in production',
+      'Tech Lead/CTO - Lead engineering teams and define technology strategy'
+    ],
+    differentiatorKo: '"결제 게이트웨이 연동 중 트랜잭션 지연 15% 단축"이라는 실제 성과와 "서킷 브레이커 패턴 도입"같은 구체적 기술 선택이 당신을 단순 개발자가 아닌 시스템 설계자로 포지셔닝합니다.',
+    differentiatorEn: 'Your ability to reduce payment gateway latency by 15% and implement resilience patterns like circuit breakers shows you\'re not just a developer—you\'re a systems architect.'
+  },
+  {
+    strengthKo: '리더십',
+    strengthEn: 'Leadership',
+    skillKey: 'leadership',
+    value: 85,
+    careerPathsKo: [
+      '엔지니어링 매니저 - 팀 빌딩, 채용, 성과관리',
+      '프로덕트 리더 - 크로스펑셔널 팀 조율, 로드맵 주도',
+      '조직개발 리더 - 기업문화, 조직구조 개선',
+      'VP/Executive - 사업부 전략 수립 및 경영진 레벨 의사결정'
+    ],
+    careerPathsEn: [
+      'Engineering Manager - Build teams, hiring, performance management',
+      'Product Leader - Coordinate cross-functional teams, drive roadmaps',
+      'Organizational Development Leader - Improve culture and structure',
+      'VP/Executive - Define business strategy and make executive decisions'
+    ],
+    differentiatorKo: '"24명 참가 워크숍 진행 후 팀 만족도 28% 상승"은 단순 리더십이 아닌 "조직 효율성을 수치로 개선하는" 리더십입니다. 이는 매니저 이상으로의 승진에서 강력한 무기입니다.',
+    differentiatorEn: 'Increasing team satisfaction by 28% through structured workshops demonstrates you\'re not just a leader—you\'re a change agent who drives measurable organizational improvements.'
+  }
+];
+
