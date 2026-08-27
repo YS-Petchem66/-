@@ -38,22 +38,22 @@ export const SkillGrowthChart: React.FC<SkillGrowthChartProps> = ({ language, tr
               </div>
             </div>
             
-            {/* Simple bar representation */}
-            <div className="relative h-8 bg-slate-50 rounded-lg overflow-hidden border border-slate-200">
-              {/* Timeline representation */}
-              <div className="absolute inset-0 flex items-center gap-1 px-2">
-                {trend.trendData.map((data, idx) => (
-                  <div key={idx} className="flex flex-col items-center flex-1">
+            {/* Bar chart representation */}
+            <div className="flex items-end justify-center gap-1 h-24 bg-slate-50 rounded-lg p-2 border border-slate-200">
+              {trend.trendData.map((data, idx) => (
+                <div key={idx} className="flex flex-col items-center flex-1 h-full justify-end">
+                  <div className="w-full flex-1 flex items-end justify-center">
                     <div
-                      className="w-full h-6 bg-gradient-to-t from-[#10B981] to-[#10B981] rounded-sm"
-                      style={{ opacity: data.value / 100 }}
+                      className="w-2/3 bg-gradient-to-t from-[#10B981] to-[#06b66d] rounded-t-sm transition-all"
+                      style={{ height: `${(data.value / 100) * 100}%` }}
+                      title={`${data.value}%`}
                     />
-                    <span className="text-[9px] text-slate-500 mt-0.5">
-                      {data.date.split('-')[1]}월
-                    </span>
                   </div>
-                ))}
-              </div>
+                  <span className="text-[9px] text-slate-500 mt-1 w-full text-center">
+                    {data.date.split('-')[1]}월
+                  </span>
+                </div>
+              ))}
             </div>
 
             {/* Growth insight */}
