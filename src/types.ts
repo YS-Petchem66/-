@@ -63,6 +63,20 @@ export interface RecommendedStory {
   bookmarked?: boolean;
 }
 
+export interface DevelopmentActivity {
+  id: string;
+  categoryKo: string;
+  categoryEn: string;
+  titleKo: string;
+  titleEn: string;
+  descriptionKo: string;
+  descriptionEn: string;
+  targetSkillKo: string;
+  targetSkillEn: string;
+  duration: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+}
+
 export interface MatchingResult {
   companyName: string;
   coreValues: string;
@@ -70,6 +84,7 @@ export interface MatchingResult {
   aiInsightEn: string;
   matrix: MatrixRow[];
   recommendedStories: RecommendedStory[];
+  developmentActivities?: DevelopmentActivity[];
 }
 
 export interface AnalysisResult {

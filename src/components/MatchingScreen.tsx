@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { MatchingResult, RecommendedStory, Language, ExperienceItem } from '../types';
-import { INITIAL_MATCHING_RESULT, COMPANY_PRESETS } from '../data/initialData';
+import { INITIAL_MATCHING_RESULT_WITH_DEV, COMPANY_PRESETS } from '../data/initialData';
 import { DraftModal } from './DraftModal';
-import { Sparkles, ArrowRightLeft, Bookmark, Edit3, RefreshCw, CheckCircle, BrainCircuit } from 'lucide-react';
+import { Sparkles, ArrowRightLeft, Bookmark, Edit3, RefreshCw, CheckCircle, BrainCircuit, Zap, Target } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface MatchingScreenProps {
@@ -14,9 +14,9 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
   language,
   experiences,
 }) => {
-  const [matchingData, setMatchingData] = useState<MatchingResult>(INITIAL_MATCHING_RESULT);
-  const [companyName, setCompanyName] = useState(INITIAL_MATCHING_RESULT.companyName);
-  const [coreValues, setCoreValues] = useState(INITIAL_MATCHING_RESULT.coreValues);
+  const [matchingData, setMatchingData] = useState<MatchingResult>(INITIAL_MATCHING_RESULT_WITH_DEV);
+  const [companyName, setCompanyName] = useState(INITIAL_MATCHING_RESULT_WITH_DEV.companyName);
+  const [coreValues, setCoreValues] = useState(INITIAL_MATCHING_RESULT_WITH_DEV.coreValues);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [selectedStory, setSelectedStory] = useState<RecommendedStory | null>(null);
   const [bookmarkedStories, setBookmarkedStories] = useState<Set<string>>(new Set());
@@ -280,6 +280,79 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
               })}
             </div>
           </div>
+
+          {/* Development Activities Recommendations */}
+          {matchingData.developmentActivities && matchingData.developmentActivities.length > 0 && (
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <div className="p-1.5 bg-[#f97316]/15 rounded-lg text-[#f97316]">
+                  <Target className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold text-[#091426]">
+                  {language === 'ko' ? '약점 보완 활동 추천' : 'Skill Development Recommendations'}
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {matchingData.developmentActivities.map((activity) => (
+                  <div
+                    key={activity.id}
+                    className="bg-white rounded-xl p-5 card-shadow border border-[#c5c6cd]/60 hover:shadow-md transition-all"
+                  >
+                    <div className="flex justify-between items-start mb-2.5">
+                      <span className={`text-xs font-bold px-2.5 py-1 rounded-md ${
+                        activity.difficulty === 'easy'
+                          ? 'bg-[#dcfce7] text-[#006c49]'
+                          : activity.difficulty === 'medium'
+                          ? 'bg-[#fef3c7] text-[#92400e]'
+                          : 'bg-[#fee2e2] text-[#991b1b]'
+                      }`}>
+                        {language === 'ko' ? activity.categoryKo : activity.categoryEn}
+                      </span>
+                      <span className={`text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap ${
+                        activity.difficulty === 'easy'
+                          ? 'bg-[#dcfce7] text-[#006c49] border border-[#bbf7d0]'
+                          : activity.difficulty === 'medium'
+                          ? 'bg-[#fef3c7] text-[#92400e] border border-[#fcd34d]'
+                          : 'bg-[#fee2e2] text-[#991b1b] border border-[#fca5a5]'
+                      }`}>
+                        {activity.difficulty === 'easy' && '쉬움'}
+                        {activity.difficulty === 'medium' && '중급'}
+                        {activity.difficulty === 'hard' && '어려움'}
+                      </span>
+                    </div>
+
+                    <h4 className="text-sm font-bold text-[#091426] mb-1.5">
+                      {language === 'ko' ? activity.titleKo : activity.titleEn}
+                    </h4>
+
+                    <p className="text-xs text-[#45474c] mb-3 leading-relaxed">
+                      {language === 'ko' ? activity.descriptionKo : activity.descriptionEn}
+                    </p>
+
+                    <div className="space-y-2 pt-3 border-t border-slate-100">
+                      <div className="flex items-center gap-2 text-xs">
+                        <Zap className="w-3.5 h-3.5 text-[#f97316]" />
+                        <span className="text-[#45474c] font-medium">
+                          {language === 'ko' ? '목표 역량: ' : 'Target Skill: '}
+                          <span className="font-bold text-[#f97316]">
+                            {language === 'ko' ? activity.targetSkillKo : activity.targetSkillEn}
+                          </span>
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs">
+                        <CheckCircle className="w-3.5 h-3.5 text-[#64748b]" />
+                        <span className="text-[#45474c]">
+                          {language === 'ko' ? '예상 기간: ' : 'Duration: '}
+                          <span className="font-semibold">{activity.duration}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
       </div>
 

@@ -219,3 +219,68 @@ export const COMPANY_PRESETS = [
     valuesEn: 'Technical Excellence, Relentless Curiosity, Ethical Leadership, Open Collaboration'
   }
 ];
+
+export const WEAK_SKILLS = [
+  { key: 'design', nameKo: '디자인', nameEn: 'Design', value: 60, fullMark: 100 },
+  { key: 'strategy', nameKo: '전략', nameEn: 'Strategy', value: 70, fullMark: 100 }
+];
+
+export const DEVELOPMENT_ACTIVITIES: import('../types').DevelopmentActivity[] = [
+  {
+    id: 'dev-1',
+    categoryKo: '온라인 과정',
+    categoryEn: 'Online Course',
+    titleKo: 'UI/UX 디자인 핵심 가이드',
+    titleEn: 'Essential UI/UX Design Guide',
+    descriptionKo: '사용자 경험 설계의 기초부터 고급 프로토타이핑까지 배우는 5주 집중 과정. Figma를 활용한 실전 프로젝트 경험이 포함됩니다.',
+    descriptionEn: 'A 5-week intensive course covering UX fundamentals to advanced prototyping with hands-on Figma projects.',
+    targetSkillKo: '디자인',
+    targetSkillEn: 'Design',
+    duration: '5주',
+    difficulty: 'medium'
+  },
+  {
+    id: 'dev-2',
+    categoryKo: '세미나/워크숍',
+    categoryEn: 'Seminar/Workshop',
+    titleKo: '디자인 씽킹과 사용자 연구',
+    titleEn: 'Design Thinking & User Research',
+    descriptionKo: '기업 입장에서 고객의 니즈를 파악하고 창의적인 솔루션을 만드는 과정을 체험합니다. 실제 사례 분석을 통해 전략적 사고를 강화합니다.',
+    descriptionEn: 'Interactive workshop exploring customer empathy mapping and design-led problem solving with real industry case studies.',
+    targetSkillKo: '전략',
+    targetSkillEn: 'Strategy',
+    duration: '2일',
+    difficulty: 'medium'
+  },
+  {
+    id: 'dev-3',
+    categoryKo: '프로젝트 기반 학습',
+    categoryEn: 'Project-based Learning',
+    titleKo: '웹 서비스 리디자인 프로젝트',
+    titleEn: 'Web Service Redesign Project',
+    descriptionKo: '낡은 웹서비스의 UI를 분석하고 현대적 디자인 트렌드를 적용하여 완전히 재설계하는 포트폴리오 프로젝트.',
+    descriptionEn: 'Apply modern design trends to redesign a legacy web service, building a portfolio case study.',
+    targetSkillKo: '디자인',
+    targetSkillEn: 'Design',
+    duration: '3주',
+    difficulty: 'hard'
+  },
+  {
+    id: 'dev-4',
+    categoryKo: '커뮤니티 참여',
+    categoryEn: 'Community Involvement',
+    titleKo: 'UXPA 코리아 정기 밋업 참석',
+    titleEn: 'UXPA Korea Monthly Meetup',
+    descriptionKo: '국내 UX 전문가들의 경험담과 최신 트렌드를 배울 수 있는 월간 커뮤니티 행사. 네트워킹 기회도 풍부합니다.',
+    descriptionEn: 'Monthly UX professional community meetup featuring industry experts, trends, and networking opportunities.',
+    targetSkillKo: '디자인',
+    targetSkillEn: 'Design',
+    duration: '월간',
+    difficulty: 'easy'
+  }
+];
+
+export const INITIAL_MATCHING_RESULT_WITH_DEV = {
+  ...INITIAL_MATCHING_RESULT,
+  developmentActivities: DEVELOPMENT_ACTIVITIES
+};

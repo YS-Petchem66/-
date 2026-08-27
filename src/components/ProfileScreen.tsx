@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Language, ExperienceItem, SkillScore } from '../types';
-import { User, Award, FileText, Download, CheckCircle2, Star, Sparkles, Mail, Briefcase, Calendar } from 'lucide-react';
+import { User, Award, FileText, Download, CheckCircle2, Star, Sparkles, Mail, Briefcase, Calendar, TrendingDown, Lightbulb } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface ProfileScreenProps {
@@ -39,6 +39,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
   };
 
   const topSkills = [...skills].sort((a, b) => b.value - a.value).slice(0, 3);
+  const weakSkills = [...skills].sort((a, b) => a.value - b.value).slice(0, 2);
 
   return (
     <div className="w-full max-w-[1280px] mx-auto px-4 md:px-12 pt-6 pb-28 md:pb-16">
@@ -124,6 +125,36 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Weak Competencies Card */}
+          <div className="bg-white rounded-xl p-6 card-shadow border border-[#c5c6cd]/50">
+            <h4 className="text-sm font-bold text-[#091426] mb-3 flex items-center gap-2">
+              <TrendingDown className="w-4 h-4 text-[#f97316]" />
+              {language === 'ko' ? '성장 기회 역량' : 'Growth Opportunity Areas'}
+            </h4>
+            <div className="space-y-3">
+              {weakSkills.map((s, idx) => (
+                <div key={s.key}>
+                  <div className="flex justify-between text-xs font-semibold mb-1">
+                    <span className="text-[#1e293b]">
+                      {language === 'ko' ? s.nameKo : s.nameEn}
+                    </span>
+                    <span className="text-[#f97316] font-bold">{s.value}%</span>
+                  </div>
+                  <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-[#f97316] rounded-full transition-all duration-500"
+                      style={{ width: `${s.value}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-slate-500 mt-3 pt-3 border-t border-slate-100 flex items-center gap-1">
+              <Lightbulb className="w-3.5 h-3.5 text-[#f97316]" />
+              {language === 'ko' ? '매칭 화면에서 보완 활동을 추천받으세요' : 'Check Matching screen for development recommendations'}
+            </p>
           </div>
         </section>
 
