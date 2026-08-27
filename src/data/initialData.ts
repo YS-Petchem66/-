@@ -101,60 +101,37 @@ export const INITIAL_EXPERIENCES: ExperienceItem[] = [
 ];
 
 export const INITIAL_MATCHING_RESULT: MatchingResult = {
-  companyName: '글로벌 테크놀로지 (Global Tech Inc.)',
-  coreValues: '글로벌 마인드, 혁신, 팀워크 (Global Mindset, Innovation, Teamwork)',
-  aiInsightKo: "AI 인사이트 - Alex님의 경험은 '글로벌 마인드'와 '혁신' 항목에서 강한 일치도를 보입니다. 해외 인턴십과 해커톤 프로젝트에 초점을 맞추어 이야기를 구성해 보세요.",
-  aiInsightEn: 'AI Insight - Your experiences show strong alignment with "Global Mindset" and "Innovation". Consider focusing on your Overseas Internship and Hackathon project to strengthen your narrative.',
+  companyName: '한국가스공사 (Korea Gas Corporation)',
+  coreValues: '안정성, 기술 혁신, 사회 책임 (Stability, Technology Innovation, Social Responsibility)',
+  aiInsightKo: "AI 인사이트 - Alex님의 경험은 '기술 혁신'과 '팀 리더십' 항목에서 강한 일치도를 보입니다. 해커톤 프로젝트와 팀 워크숍 경험에 초점을 맞추어 이야기를 구성해 보세요.",
+  aiInsightEn: 'AI Insight - Your experiences show strong alignment with "Technology Innovation" and "Team Leadership". Consider focusing on your Hackathon project and workshop facilitation to strengthen your narrative.',
   matrix: [
     {
-      companyValueKo: '글로벌 마인드',
-      companyValueEn: 'Global Mindset',
+      companyValueKo: '기술 혁신',
+      companyValueEn: 'Technology Innovation',
       matchedExperienceKo: '베를린 해외 인턴십',
       matchedExperienceEn: 'Overseas Internship in Berlin',
-      matchRate: 92,
-      rationaleKo: '다국적 개발팀과의 교차 시차 협업 및 현지-본사 커뮤니케이션 주도 경험이 글로벌 역량과 완벽히 부합합니다.',
-      rationaleEn: 'Experience bridging time zones and coordinating between international teams directly demonstrates global execution.'
+      matchRate: 90,
+      rationaleKo: '촉박한 기한 내에 창의적인 알고리즘으로 40% 성능 개선을 달성한 사례가 한국가스공사의 기술 혁신 인재상과 직결됩니다.',
+      rationaleEn: 'Innovative algorithm optimization achieving 40% performance improvement aligns perfectly with Korea Gas Corporation\'s technology innovation values.'
     },
     {
-      companyValueKo: '혁신 및 창의성',
-      companyValueEn: 'Innovation & Creativity',
-      matchedExperienceKo: 'AI 해커톤 - 1위',
-      matchedExperienceEn: 'AI Hackathon - 1st Place',
+      companyValueKo: '팀 리더십',
+      companyValueEn: 'Team Leadership',
+      matchedExperienceKo: '팀 리드 워크숍',
+      matchedExperienceEn: 'Team Lead Workshop',
       matchRate: 88,
-      rationaleKo: '기존 관행을 깬 독창적 정렬 알고리즘 적용으로 처리 시간을 40% 단축한 사례가 기업의 혁신 인재상과 직결됩니다.',
-      rationaleEn: 'Proposing novel streaming algorithms to improve speed by 40% validates continuous drive for innovation.'
+      rationaleKo: '24명 규모 팀의 애자일 워크숍을 주도하여 팀 만족도 28% 상승을 달성한 리더십 경험이 한국가스공사의 팀워크 중심 조직문화와 부합합니다.',
+      rationaleEn: 'Leadership experience driving 28% team satisfaction improvement through agile workshops demonstrates your organizational development capabilities.'
     }
   ],
   recommendedStories: [
     {
       id: 'story-1',
-      tagKo: '글로벌 마인드',
-      tagEn: 'Global Mindset',
-      titleKo: '베를린 인턴십 중 문화 간 커뮤니케이션 적응',
-      titleEn: 'Adapting to cross-cultural communication during Berlin Internship',
-      descriptionKo: '현지 독일 개발자들과 한국 본사 팀 간의 조율을 통해 복잡한 프로젝트 요구 사항을 해결했습니다.',
-      descriptionEn: 'Navigated complex project requirements while coordinating between local German developers and the Korean HQ team.',
-      draftBulletKo: '• 독일-한국 간 7시간 시차 환경에서 비동기 스프린트 회의 체계를 수립하여 3개 부서 20+명 간 요구사항 오해율을 0건으로 통제하고 프로젝트를 납기 내 100% 릴리즈함.',
-      draftBulletEn: '• Established asynchronous sprint synchronization across 7-hour time difference, eliminating cross-cultural communication bottlenecks and delivering international data migration on schedule.',
-      starStructureKo: {
-        situation: '베를린 인턴십 중 독일 엔지니어링 팀과 한국 본사 제품팀 간의 상이한 개발 관행 및 언어/시차 장벽 존재.',
-        task: '다국적 팀 간 데이터 파이프라인 명세를 통일하고 3주 내 통합 테스트 완료 필요.',
-        action: '주간 비동기 데일리 스크럼 템플릿을 도입하고, 핵심 인터페이스 스펙을 다이어그램 기반 자동화 문서로 공유.',
-        result: '시차로 인한 병목 지연을 30% 감소시키고, 오류 없이 정시 배포 완료.'
-      },
-      starStructureEn: {
-        situation: 'Encountered architectural discrepancies and time zone friction between German engineering and Korean product HQ.',
-        task: 'Standardize cross-border data pipeline specifications and execute integration testing within 3 weeks.',
-        action: 'Implemented async daily scrum templates and standardized diagram-based automated API specs.',
-        result: 'Reduced cross-team turnaround lag by 30% and achieved zero release defects.'
-      }
-    },
-    {
-      id: 'story-2',
-      tagKo: '혁신',
-      tagEn: 'Innovation',
-      titleKo: '해커톤을 위한 새로운 정렬 알고리즘 개발',
-      titleEn: 'Developing a novel sorting algorithm for Hackathon',
+      tagKo: '기술 혁신',
+      tagEn: 'Technology Innovation',
+      titleKo: '해커톤 알고리즘 최적화를 통한 성능 개선',
+      titleEn: 'Performance Optimization Through Innovative Algorithm Design',
       descriptionKo: '촉박한 마감 기한 내에 처리 시간을 40% 단축하는 혁신적인 데이터 파싱 접근 방식을 제안하고 구현했습니다.',
       descriptionEn: 'Proposed and implemented an unconventional approach to data parsing that reduced processing time by 40% under tight deadlines.',
       draftBulletKo: '• 대용량 스트리밍 데이터의 메모리 오버헤드를 줄이기 위해 독자적인 파이프라인 정렬 기법을 설계·적용하여 처리 지연 시간을 기존 대비 40% 단축하고 해커톤 1위 대상 수상.',
@@ -170,6 +147,29 @@ export const INITIAL_MATCHING_RESULT: MatchingResult = {
         task: 'Dramatically reduce compute cost of sorting routines to maintain sub-second response times.',
         action: 'Designed and deployed chunk-based lightweight stream indexing avoiding heavy heap allocations.',
         result: 'Reduced overall parsing latency by 40%, securing unanimous 1st place award.'
+      }
+    },
+    {
+      id: 'story-2',
+      tagKo: '팀 리더십',
+      tagEn: 'Team Leadership',
+      titleKo: '크로스펑셔널 팀 워크숍을 통한 조직 효율성 개선',
+      titleEn: 'Organizational Efficiency Improvement Through Team Leadership',
+      descriptionKo: '애자일 방법론과 교차 기능 팀 커뮤니케이션에 초점을 맞춘 2일간의 워크숍을 진행했습니다.',
+      descriptionEn: 'Facilitated a 2-day workshop focusing on agile methodologies and cross-functional team communication.',
+      draftBulletKo: '• 디자인팀, 기획팀, 엔지니어링팀 24명이 참가한 애자일 스프린트 기획 워크숍을 주도하여 팀 간 사일로 현상 완화, 팀 만족도 28% 상승 및 스프린트 효율성 향상을 달성.',
+      draftBulletEn: '• Led agile sprint planning workshop with 24 cross-functional participants, resolving team silos, achieving 28% satisfaction increase and improved sprint efficiency.',
+      starStructureKo: {
+        situation: '디자인팀, 기획팀, 엔지니어링팀 간의 소통 부족과 상이한 용어·기대치로 인한 협업 효율성 저하.',
+        task: '부서 간 이해관계를 조율하고 통일된 스프린트 프로세스 수립 필요.',
+        action: '유저 스토리 매핑과 비동기 피드백 루프 템플릿을 개발하여 실시간 피드백 캔버스 설계.',
+        result: '팀 만족도 28% 상승, 스프린트 주기 단축, 부서 간 오해율 0건으로 통제.'
+      },
+      starStructureEn: {
+        situation: 'Communication gaps and misaligned expectations between design, planning, and engineering teams reduced collaboration efficiency.',
+        task: 'Align cross-departmental interests and establish unified sprint processes.',
+        action: 'Developed user story mapping and async feedback loop templates with structured feedback canvas.',
+        result: '28% increase in team satisfaction, shorter sprint cycles, zero cross-team misunderstandings.'
       }
     }
   ]
@@ -204,19 +204,19 @@ export const SAMPLE_NOTES_PRESETS = [
 
 export const COMPANY_PRESETS = [
   {
-    name: '글로벌 테크놀로지 (Global Tech Inc.)',
-    valuesKo: '글로벌 마인드, 혁신 및 창의성, 주도적 문제 해결, 팀워크',
-    valuesEn: 'Global Mindset, Innovation & Creativity, Proactive Problem Solving, Teamwork'
+    name: '한국가스공사 (Korea Gas Corporation)',
+    valuesKo: '안정성과 신뢰, 기술 혁신, 사회 책임, 팀워크',
+    valuesEn: 'Stability & Trust, Technology Innovation, Social Responsibility, Teamwork'
   },
   {
-    name: '혁신 핀테크 플랫폼 (Toss / FinTech Corp)',
-    valuesKo: '극단적 속도와 실행력, 데이터 기반 의사결정, 고객 중심 문제해결, 투명한 소통',
-    valuesEn: 'High Execution Velocity, Data-driven Decision Making, Customer Focus, Transparent Communication'
+    name: '남동발전 (Dangjin Thermal Power)',
+    valuesKo: '효율성과 혁신, 데이터 기반 의사결정, 에너지 전환, 안전 최우선',
+    valuesEn: 'Efficiency & Innovation, Data-driven Decision Making, Energy Transition, Safety First'
   },
   {
-    name: '글로벌 AI 연구소 (AI Frontier Labs)',
-    valuesKo: '기술적 탁월성, 끊임없는 연구와 도전, 윤리적 리더십, 개방형 협업',
-    valuesEn: 'Technical Excellence, Relentless Curiosity, Ethical Leadership, Open Collaboration'
+    name: '한국전력 (Korea Electric Power Corporation)',
+    valuesKo: '신뢰성, 기술 리더십, 지속가능성, 고객 중심',
+    valuesEn: 'Reliability, Technical Leadership, Sustainability, Customer Focus'
   }
 ];
 
@@ -415,20 +415,20 @@ export const INITIAL_ACTIVITY_PROGRESS: import('../types').ActivityProgress[] = 
 // 기능 4: 다중 기업 매칭 비교
 export const COMPANY_MATCHING_SUMMARIES: import('../types').CompanyMatchingSummary[] = [
   {
-    companyName: '글로벌 테크놀로지 (Global Tech Inc.)',
+    companyName: '한국가스공사 (Korea Gas Corporation)',
     overallMatchRate: 90,
     strongMatches: 2,
     developmentNeeds: 2
   },
   {
-    companyName: '혁신 핀테크 플랫폼 (Toss / FinTech Corp)',
-    overallMatchRate: 85,
+    companyName: '남동발전 (Dangjin Thermal Power)',
+    overallMatchRate: 87,
     strongMatches: 2,
     developmentNeeds: 2
   },
   {
-    companyName: '글로벌 AI 연구소 (AI Frontier Labs)',
-    overallMatchRate: 88,
+    companyName: '한국전력 (Korea Electric Power Corporation)',
+    overallMatchRate: 89,
     strongMatches: 2,
     developmentNeeds: 1
   }
