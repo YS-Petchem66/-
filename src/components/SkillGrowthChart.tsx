@@ -1,11 +1,109 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Language, SkillGrowthTrend } from '../types';
-import { TrendingUp, BarChart3 } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
 
 interface SkillGrowthChartProps {
   language: Language;
   trends: SkillGrowthTrend[];
 }
+
+const LineChart: React.FC<{ trend: SkillGrowthTrend }> = ({ trend }) => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  
+  const data = trend.trendData;
+  const width = 280;
+  const height = 140;
+  const padding = 20;
+  const graphWidth = width - padding * 2;
+  const graphHeight = height - padding * 2;
+  
+  const minValue = Math.min(...data.map(d => d.value), 50);
+  const maxValue = 100;
+  const range = maxValue - minValue;
+  
+  // 포인트 계산
+  const points = data.map((d, idx) => ({
+    x: padding + (idx / (data.length - 1)) * graphWidth,
+    y: padding + graphHeight - ((d.value - minValue) / range) * graphHeight,
+    value: d.value
+  }));
+  
+  const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+  
+  return (
+    <div className="relative" onMouseLeave={() => setHoveredIndex(null)}>
+      <svg width={width} height={height} className="w-full" viewBox={`0 0 ${width} ${height}`}>
+        {/* 그리드 라인 */}
+        {[20, 40, 60, 80, 100].map((val) => (
+          val >= minValue && (
+            <line
+              key={`grid-${val}`}
+              x1={padding}
+              y1={padding + graphHeight - ((val - minValue) / range) * graphHeight}
+              x2={width - padding}
+              y2={padding + graphHeight - ((val - minValue) / range) * graphHeight}
+              stroke="#e2e8f0"
+              strokeWidth="1"
+              strokeDasharray="4"
+            />
+          )
+        ))}
+        
+        {/* Y축 */}
+        <line x1={padding} y1={padding} x2={padding} y2={height - padding} stroke="#cbd5e1" strokeWidth="1" />
+        
+        {/* X축 */}
+        <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="#cbd5e1" strokeWidth="1" />
+        
+        {/* 선 그래프 */}
+        <polyline
+          points={points.map(p => `${p.x},${p.y}`).join(' ')}
+          fill="none"
+          stroke="#10B981"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        
+        {/* 데이터 포인트 */}
+        {points.map((point, idx) => (
+          <circle
+            key={`point-${idx}`}
+            cx={point.x}
+            cy={point.y}
+            r="4"
+            fill={hoveredIndex === idx ? '#059669' : '#10B981'}
+            stroke="white"
+            strokeWidth="2"
+            className="cursor-pointer transition-all"
+            onMouseEnter={() => setHoveredIndex(idx)}
+          />
+        ))}
+        
+        {/* 값 레이블 */}
+        {points.map((point, idx) => (
+          <text
+            key={`label-${idx}`}
+            x={point.x}
+            y={point.y - 10}
+            textAnchor="middle"
+            className="text-[11px] font-bold fill-[#091426]"
+            opacity={hoveredIndex === idx ? 1 : 0.6}
+          >
+            {data[idx].value}%
+          </text>
+        ))}
+      </svg>
+      
+      {/* 월 레이블 */}
+      <div className="flex justify-between px-5 text-[9px] text-slate-500 mt-1">
+        {data.map((d, idx) => (
+          <span key={`month-${idx}`}>{d.date.split('-')[1]}월</span>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export const SkillGrowthChart: React.FC<SkillGrowthChartProps> = ({ language, trends }) => {
   return (
@@ -19,7 +117,7 @@ export const SkillGrowthChart: React.FC<SkillGrowthChartProps> = ({ language, tr
         </h3>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-5">
         {trends.map((trend) => (
           <div key={trend.skillKey} className="space-y-2">
             <div className="flex justify-between items-center">
@@ -38,26 +136,13 @@ export const SkillGrowthChart: React.FC<SkillGrowthChartProps> = ({ language, tr
               </div>
             </div>
             
-            {/* Bar chart representation */}
-            <div className="flex items-end justify-center gap-1 h-24 bg-slate-50 rounded-lg p-2 border border-slate-200">
-              {trend.trendData.map((data, idx) => (
-                <div key={idx} className="flex flex-col items-center flex-1 h-full justify-end">
-                  <div className="w-full flex-1 flex items-end justify-center">
-                    <div
-                      className="w-2/3 bg-gradient-to-t from-[#10B981] to-[#06b66d] rounded-t-sm transition-all"
-                      style={{ height: `${(data.value / 100) * 100}%` }}
-                      title={`${data.value}%`}
-                    />
-                  </div>
-                  <span className="text-[9px] text-slate-500 mt-1 w-full text-center">
-                    {data.date.split('-')[1]}월
-                  </span>
-                </div>
-              ))}
+            {/* Line chart */}
+            <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
+              <LineChart trend={trend} />
             </div>
 
             {/* Growth insight */}
-            <p className="text-xs text-slate-600 mt-2">
+            <p className="text-xs text-slate-600">
               {language === 'ko' ? (
                 <>
                   {trend.trendData[0].value}% → {trend.currentValue}% 
