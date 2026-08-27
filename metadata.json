@@ -1,0 +1,6 @@
+{
+  "name": "경험 성장 노트",
+  "description": "AI 기반 커리어 경험 기록, 역량 분석 및 기업 인재상 매칭 플랫폼",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
