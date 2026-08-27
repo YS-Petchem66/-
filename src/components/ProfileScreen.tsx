@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Language, ExperienceItem, SkillScore } from '../types';
-import { User, Award, FileText, Download, CheckCircle2, Star, Sparkles, Mail, Briefcase, Calendar, TrendingDown, Lightbulb } from 'lucide-react';
+import { Language, ExperienceItem, SkillScore, SavedDraft } from '../types';
+import { User, Award, FileText, Download, CheckCircle2, Star, Sparkles, Mail, Briefcase, Calendar, TrendingDown, Lightbulb, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { SkillGrowthChart } from './SkillGrowthChart';
 import { StrengthGuidanceCard } from './StrengthGuidanceCard';
@@ -19,6 +19,9 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
   experiences
 }) => {
   const [downloaded, setDownloaded] = useState(false);
+  const [drafts, setDrafts] = useState<SavedDraft[]>(INITIAL_SAVED_DRAFTS);
+  const [editingDraft, setEditingDraft] = useState<SavedDraft | null>(null);
+  const [editForm, setEditForm] = useState({ titleKo: '', titleEn: '', bulletKo: '', bulletEn: '' });
 
   const avatarUrl =
     'https://lh3.googleusercontent.com/aida-public/AB6AXuBqUkNXNIYTD_bpe37KiuT959NjmATwJ04ePNE2OPo1tRPOIf6haKmfMuKTBv3HQcY4M2ogsU5s3-dhzbrPVcOZqszfdu6O6d9ggtFTYTjwMlEprAVoE_sA55oBWcUgMVwqEz0b6tPlji1D_7h7zWDp7Qkve4rHyQVgGvRSnl6Xn9wImIVmd4ZTV0r5SoW6H3io_Iyiga29cW9C1dduCzPYs8HVdGjP6wCUEqjFHmJWfaogdzGkq8LN';
@@ -40,6 +43,40 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
       origin: { y: 0.6 }
     });
     setTimeout(() => setDownloaded(false), 3000);
+  };
+
+  const handleEditDraft = (draft: SavedDraft) => {
+    setEditingDraft(draft);
+    setEditForm({
+      titleKo: draft.titleKo,
+      titleEn: draft.titleEn,
+      bulletKo: draft.bulletKo,
+      bulletEn: draft.bulletEn
+    });
+  };
+
+  const handleSaveEdit = () => {
+    if (editingDraft) {
+      setDrafts(drafts.map(d => 
+        d.id === editingDraft.id 
+          ? { 
+              ...d, 
+              titleKo: editForm.titleKo,
+              titleEn: editForm.titleEn,
+              bulletKo: editForm.bulletKo,
+              bulletEn: editForm.bulletEn,
+              updatedAt: new Date().toISOString()
+            }
+          : d
+      ));
+      setEditingDraft(null);
+    }
+  };
+
+  const handleDeleteDraft = (id: string) => {
+    if (confirm(language === 'ko' ? '이 초안을 삭제하시겠습니까?' : 'Delete this draft?')) {
+      setDrafts(drafts.filter(d => d.id !== id));
+    }
   };
 
   const topSkills = [...skills].sort((a, b) => b.value - a.value).slice(0, 3);
@@ -225,8 +262,110 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
 
       {/* Saved Drafts */}
       <div className="mt-6">
-        <SavedDraftsPanel language={language} drafts={INITIAL_SAVED_DRAFTS} />
+        <SavedDraftsPanel 
+          language={language} 
+          drafts={drafts}
+          onEdit={handleEditDraft}
+          onDelete={handleDeleteDraft}
+        />
       </div>
+
+      {/* Edit Draft Modal */}
+      {editingDraft && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto card-shadow">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-bold text-[#091426]">
+                {language === 'ko' ? '초안 수정' : 'Edit Draft'}
+              </h3>
+              <button
+                onClick={() => setEditingDraft(null)}
+                className="p-1 hover:bg-slate-100 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5 text-slate-500" />
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              {/* Company Name Display */}
+              <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                <p className="text-xs text-slate-500">
+                  {language === 'ko' ? '기업명' : 'Company'}
+                </p>
+                <p className="text-sm font-bold text-[#091426]">{editingDraft.companyName}</p>
+              </div>
+
+              {/* Korean Title */}
+              <div>
+                <label className="text-xs font-bold text-[#091426] block mb-2">
+                  {language === 'ko' ? '제목 (한글)' : 'Title (Korean)'}
+                </label>
+                <input
+                  type="text"
+                  value={editForm.titleKo}
+                  onChange={(e) => setEditForm({ ...editForm, titleKo: e.target.value })}
+                  className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#10B981]"
+                />
+              </div>
+
+              {/* English Title */}
+              <div>
+                <label className="text-xs font-bold text-[#091426] block mb-2">
+                  {language === 'ko' ? '제목 (영문)' : 'Title (English)'}
+                </label>
+                <input
+                  type="text"
+                  value={editForm.titleEn}
+                  onChange={(e) => setEditForm({ ...editForm, titleEn: e.target.value })}
+                  className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#10B981]"
+                />
+              </div>
+
+              {/* Korean Bullet */}
+              <div>
+                <label className="text-xs font-bold text-[#091426] block mb-2">
+                  {language === 'ko' ? '자기소개서 (한글)' : 'Bullet (Korean)'}
+                </label>
+                <textarea
+                  value={editForm.bulletKo}
+                  onChange={(e) => setEditForm({ ...editForm, bulletKo: e.target.value })}
+                  rows={4}
+                  className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#10B981]"
+                />
+              </div>
+
+              {/* English Bullet */}
+              <div>
+                <label className="text-xs font-bold text-[#091426] block mb-2">
+                  {language === 'ko' ? '자기소개서 (영문)' : 'Bullet (English)'}
+                </label>
+                <textarea
+                  value={editForm.bulletEn}
+                  onChange={(e) => setEditForm({ ...editForm, bulletEn: e.target.value })}
+                  rows={4}
+                  className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#10B981]"
+                />
+              </div>
+
+              {/* Buttons */}
+              <div className="flex gap-2 pt-4 border-t border-slate-200">
+                <button
+                  onClick={handleSaveEdit}
+                  className="flex-1 py-2.5 px-3 bg-[#10B981] text-white font-bold text-sm rounded-lg hover:bg-[#059669] transition-colors"
+                >
+                  {language === 'ko' ? '저장' : 'Save'}
+                </button>
+                <button
+                  onClick={() => setEditingDraft(null)}
+                  className="flex-1 py-2.5 px-3 bg-slate-100 text-[#091426] font-bold text-sm rounded-lg hover:bg-slate-200 transition-colors"
+                >
+                  {language === 'ko' ? '취소' : 'Cancel'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

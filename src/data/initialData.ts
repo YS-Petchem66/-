@@ -289,12 +289,12 @@ export const INITIAL_MATCHING_RESULT_WITH_DEV = {
 export const INITIAL_SAVED_DRAFTS: import('../types').SavedDraft[] = [
   {
     id: 'draft-1',
-    companyName: '글로벌 테크놀로지 (Global Tech Inc.)',
+    companyName: '한국가스공사 (Korea Gas Corporation)',
     storyId: 'story-1',
-    titleKo: '베를린 인턴십 중 문화 간 커뮤니케이션 적응',
-    titleEn: 'Adapting to cross-cultural communication during Berlin Internship',
-    bulletKo: '• 독일-한국 간 7시간 시차 환경에서 비동기 스프린트 회의 체계를 수립하여 3개 부서 20+명 간 요구사항 오해율을 0건으로 통제하고 프로젝트를 납기 내 100% 릴리즈함.',
-    bulletEn: '• Established asynchronous sprint synchronization across 7-hour time difference, eliminating cross-cultural communication bottlenecks and delivering international data migration on schedule.',
+    titleKo: '안정적 기업운영을 위한 국제 프로젝트 협력 경험',
+    titleEn: 'International Project Collaboration for Stable Corporate Operations',
+    bulletKo: '• 한국-독일 간 7시간 시차 환경에서 안정적인 커뮤니케이션 프로토콜을 수립하여 3개 부서 20+명 간 요구사항 오해를 완전히 제거하고 국제 프로젝트를 계획 기한 내 100% 완료함.',
+    bulletEn: '• Established stable communication protocols across 7-hour time difference with Germany, eliminating cross-departmental misunderstandings and delivering international project on schedule with zero delays.',
     createdAt: '2024-08-25T10:30:00Z',
     updatedAt: '2024-08-25T10:30:00Z'
   }
